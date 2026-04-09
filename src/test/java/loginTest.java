@@ -18,6 +18,15 @@ public class loginTest {
         String username = "user_name";
         boolean expected = false;
         boolean actual = login.checkUsername(username);
-        assertEquals(expected, actual, "checkUsername() method failed!");
+        assertEquals(expected, actual, "checkUsername() method failed testing!");
+    }
+    
+    @Test
+    public void testCheckPasswordComplexity() {
+        Login login = new Login();
+        String password = "@Password12";
+        boolean expected = true;
+        boolean actual = login.checkPasswordComplexity(password);
+        assertEquals(expected, actual, "checkPasswordComplexity() method failed testing!");
     }
 }
