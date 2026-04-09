@@ -29,4 +29,13 @@ public class loginTest {
         boolean actual = login.checkPasswordComplexity(password);
         assertEquals(expected, actual, "checkPasswordComplexity() method failed testing!");
     }
+    
+    @Test
+    public void testCheckUserCellphoneNumber() {
+        Login login = new Login();
+        String phoneNumber = "+27785698756";
+        boolean expected = true;
+        boolean actual = login.checkCellphoneNumber(phoneNumber);
+        assertEquals(expected, actual, "checkCellphoneNumber() method failed testing!");
+    }
 }

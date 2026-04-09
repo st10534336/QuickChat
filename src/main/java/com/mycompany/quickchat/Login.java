@@ -46,4 +46,11 @@ public class Login {
         
         return (isMinLength && containsCapitalLetter && containsANumber && containsSpecialCharacter);
     }
+    
+    public boolean checkCellphoneNumber(String phonenumber) {
+        boolean startWithCountryCode = phonenumber.startsWith("+27");
+        boolean isTwelveDigitsLong = (phonenumber.length() == 12);
+        
+        return (startWithCountryCode && isTwelveDigitsLong);
+    }
 }
