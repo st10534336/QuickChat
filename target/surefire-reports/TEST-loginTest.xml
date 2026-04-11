@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="loginTest" time="0.071" tests="15" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="loginTest" time="0.079" tests="15" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="ZW"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Apache NetBeans\jdk\bin"/>
-    <property name="sun.java.command" value="C:\Users\User\AppData\Local\Temp\surefire7676375042829704384\surefirebooter-20260411134218552_3.jar C:\Users\User\AppData\Local\Temp\surefire7676375042829704384 2026-04-11T13-42-18_418-jvmRun1 surefire-20260411134218552_1tmp surefire_0-20260411134218552_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\User\AppData\Local\Temp\surefire13518758824709421603\surefirebooter-20260411143437816_3.jar C:\Users\User\AppData\Local\Temp\surefire13518758824709421603 2026-04-11T14-34-37_677-jvmRun1 surefire-20260411143437816_1tmp surefire_0-20260411143437816_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="loginTest"/>
     <property name="surefire.test.class.path" value="C:\Users\User\Documents\GitHub\QuickChat\target\test-classes;C:\Users\User\Documents\GitHub\QuickChat\target\classes;C:\Users\User\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\User\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\User\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\User\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\User\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\User\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\User\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\User\AppData\Local\Temp\surefire7676375042829704384\surefirebooter-20260411134218552_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\User\AppData\Local\Temp\surefire13518758824709421603\surefirebooter-20260411143437816_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS"/>
@@ -62,19 +62,19 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testCheckPasswordComplexityOfInCorrectPassword" classname="loginTest" time="0.023"/>
+  <testcase name="testCheckPasswordComplexityOfInCorrectPassword" classname="loginTest" time="0.024"/>
   <testcase name="LoginFailed" classname="loginTest" time="0.002"/>
   <testcase name="testCheckPasswordComplexityOfCorrectPassword" classname="loginTest" time="0.001"/>
-  <testcase name="incorrectCellphoneNumber" classname="loginTest" time="0.002"/>
-  <testcase name="testCheckUsernameIncorrect" classname="loginTest" time="0.0"/>
-  <testcase name="testCheckUserCellphoneNumberOnCorrectNumber" classname="loginTest" time="0.0"/>
+  <testcase name="incorrectCellphoneNumber" classname="loginTest" time="0.0"/>
+  <testcase name="testCheckUsernameIncorrect" classname="loginTest" time="0.001"/>
+  <testcase name="testCheckUserCellphoneNumberOnCorrectNumber" classname="loginTest" time="0.001"/>
   <testcase name="testRegisterUser" classname="loginTest" time="0.001"/>
   <testcase name="testCheckUsernameCorrect" classname="loginTest" time="0.003"/>
-  <testcase name="usernameCorrectlyFormatted" classname="loginTest" time="0.002"/>
+  <testcase name="usernameCorrectlyFormatted" classname="loginTest" time="0.001"/>
   <testcase name="usernameIncorrectlyFormatted" classname="loginTest" time="0.001"/>
   <testcase name="LoginSuccessful" classname="loginTest" time="0.001"/>
-  <testcase name="PasswordcorrectlyFormatted" classname="loginTest" time="0.0"/>
+  <testcase name="PasswordcorrectlyFormatted" classname="loginTest" time="0.002"/>
   <testcase name="PasswordIncorrectlyFormatted" classname="loginTest" time="0.0"/>
   <testcase name="testCheckUserCellphoneNumberOnInCorrectNumber" classname="loginTest" time="0.001"/>
-  <testcase name="correctCellphoneNumber" classname="loginTest" time="0.002"/>
+  <testcase name="correctCellphoneNumber" classname="loginTest" time="0.0"/>
 </testsuite>
