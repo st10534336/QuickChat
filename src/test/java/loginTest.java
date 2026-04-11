@@ -13,12 +13,26 @@ import com.mycompany.quickchat.Login;
 public class loginTest {
     
     @Test
-    public void testCheckUsername() {
+    public void testCheckUsernameCorrect() {
         Login login = new Login();
-        String username = "user_name";
-        boolean expected = false;
+        String firstName = "Jeff";
+        String lastName = "Bezos";
+        String username = "kyl_1";
+        
+        boolean expected = true;
         boolean actual = login.checkUsername(username);
-        assertEquals(expected, actual, "checkUsername() method failed testing!");
+        assertEquals(expected, actual, "Welcome " + firstName + " " + lastName + " it is great to see you.");
+        
+    
+    }
+    
+    @Test
+    public void testCheckUsernameIncorrect() {
+        Login login = new Login();
+        String wrongUsername = "kyle!!!!!!!";
+        boolean expected2 = false;
+        boolean actual2 = login.checkUsername(wrongUsername);
+        assertEquals(expected2, actual2, login.USERNAME_REQUIREMENT_MESSAGE);
     }
     
     @Test

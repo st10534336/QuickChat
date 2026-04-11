@@ -10,21 +10,21 @@ import java.util.Scanner;
  */
 public class Login {
     
-    final String INCORRECLY_FORMATTED_USERNAME_MESSAGE = "Username is incorrectly formatted";
-    final String INCORRECLY_FORMATTED_PASSWORD_MESSAGE = "Password does not meet complexity requirements";
+    public final String INCORRECLY_FORMATTED_USERNAME_MESSAGE = "Username is incorrectly formatted";
+    public final String INCORRECLY_FORMATTED_PASSWORD_MESSAGE = "Password does not meet complexity requirements";
     
-    final String INCORRECTLY_FORMATTED_CELLPHONE_NUMBER = "Cellphone number incorrectly formatted or does not contain international code";
+    public final String INCORRECTLY_FORMATTED_CELLPHONE_NUMBER = "Cellphone number incorrectly formatted or does not contain international code";
     
-    final String PASSWORD_REQUIREMENT_MESSAGE = "incorrectly formatted password, please re-enter password \n it must have a minimum of 8 charaters, 1 special character, 1 Capital letter and it must contain a number";
-    final String USERNAME_REQUIREMENT_MESSAGE = "username is not correctly formatted \nplease ensure that your username contains and underscore and is no longer than five characters in length.";
+    public final String PASSWORD_REQUIREMENT_MESSAGE = "incorrectly formatted password, please re-enter password \n it must have a minimum of 8 charaters, 1 special character, 1 Capital letter and it must contain a number";
+    public final String USERNAME_REQUIREMENT_MESSAGE = "username is not correctly formatted \nplease ensure that your username contains and underscore and is no longer than five characters in length.";
     
-    final String USERNAME_SUCCESSFUL_CAPTURE_MESSAGE = "Username has successfully been captured";
-    final String PASSWORD_SUCCESSFUL_CAPTURE_MESSAGE = "Password has successfully been caputred";
-    final String CELLPHONE_NUMBER_SUCCESSFUL_CAPTURE_MESSAGE = "Cellphone number successfully added";
+    public final String USERNAME_SUCCESSFUL_CAPTURE_MESSAGE = "Username has successfully been captured";
+    public final String PASSWORD_SUCCESSFUL_CAPTURE_MESSAGE = "Password has successfully been caputred";
+    public final String CELLPHONE_NUMBER_SUCCESSFUL_CAPTURE_MESSAGE = "Cellphone number successfully added";
     
-    final String SUCCESSFULL_LOGIN_MESSAGE = "login was successful :D";
-    final String FAILED_LOGIN_MESSAGE = "login was unsuccessful :(";
-    final String LOGIN_RETRY_MESSAGE = "Username or password incorrect, please try again";
+    public final String SUCCESSFULL_LOGIN_MESSAGE = "login was successful :D";
+    public final String FAILED_LOGIN_MESSAGE = "login was unsuccessful :(";
+    public final String LOGIN_RETRY_MESSAGE = "Username or password incorrect, please try again";
     
     public boolean checkUsername(String userName) {
         return (userName.contains("_") && userName.length() <= 5);
