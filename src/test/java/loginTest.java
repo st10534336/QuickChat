@@ -54,12 +54,21 @@ public class loginTest {
     }
     
     @Test
-    public void testCheckUserCellphoneNumber() {
+    public void testCheckUserCellphoneNumberOnCorrectNumber() {
         Login login = new Login();
-        String phoneNumber = "+27785698756";
+        String phoneNumber = "+27838968976";
         boolean expected = true;
         boolean actual = login.checkCellphoneNumber(phoneNumber);
-        assertEquals(expected, actual, "checkCellphoneNumber() method failed testing!");
+        assertEquals(expected, actual, login.CELLPHONE_NUMBER_SUCCESSFUL_CAPTURE_MESSAGE);
+    }
+    
+    @Test
+    public void testCheckUserCellphoneNumberOnInCorrectNumber() {
+        Login login = new Login();
+        String phoneNumber = "08966553";
+        boolean expected = false;
+        boolean actual = login.checkCellphoneNumber(phoneNumber);
+        assertEquals(expected, actual, login.INCORRECTLY_FORMATTED_CELLPHONE_NUMBER);
     }
     
     @Test
