@@ -90,6 +90,15 @@ public class Login {
         //System.out.println("Usernames are mathing: " + usernamesAreMatching + ", " + enteredUsername + ", " + registeredUsername);
         
         return (usernamesAreMatching && passwordsAreMatching);
-    } 
+    }
+    
+    public String returnLoginStatus (boolean loginUserResult) {
+        System.out.println("");
+        System.out.println("loginUserResult " + loginUserResult);
+        if (loginUserResult) {
+            return "Login was Successful";
+        }
+        return "Login failed";
+    }
     
 }
