@@ -53,6 +53,7 @@ public class loginTest {
         assertEquals(expected, actual, login.PASSWORD_REQUIREMENT_MESSAGE);
     }
     
+    //This is checkUserCellphoneNumber() being tested on a correct number
     @Test
     public void testCheckUserCellphoneNumberOnCorrectNumber() {
         Login login = new Login();
@@ -62,6 +63,7 @@ public class loginTest {
         assertEquals(expected, actual, login.CELLPHONE_NUMBER_SUCCESSFUL_CAPTURE_MESSAGE);
     }
     
+    //This is checkUserCellphoneNumber() being tested on an incorrect number
     @Test
     public void testCheckUserCellphoneNumberOnInCorrectNumber() {
         Login login = new Login();
@@ -82,9 +84,82 @@ public class loginTest {
         
         String Username2 = "Panna_22";
         String Password2 = "Pan22";
-        String expected2 = "Username is incorrectly formatted";
+        String expected2 = login.INCORRECLY_FORMATTED_USERNAME_MESSAGE;
         String actual2 = login.registerUser(Username2, Password2);
         assertEquals(expected2, actual2, "testRegisterUser() function failed");
          
+    }
+    
+    //testing the loginUser() function, it should return true for the test to pass
+    @Test
+    public void LoginSuccessful() {
+        Login login = new Login();
+        String username = "U_ser";
+        String password = "@Timmy123";
+        String registeredUsername = username;
+        String registeredPassword = password;
+        boolean actual = login.loginUser(username, password, registeredUsername, registeredPassword);
+        assertTrue(actual, "True");
+    }
+    
+    //testing the loginUser() function, it should return false for the test to pass
+    @Test
+    public void LoginFailed() {
+        Login login = new Login();
+        String username = "User_";
+        String password = "@Timmy12W";
+        String registeredUsername = "user_";
+        String registeredPassword = "Timmy123@";
+        boolean actual = login.loginUser(username, password, registeredUsername, registeredPassword);
+        assertFalse(actual, "False");
+    }
+    
+    @Test
+    public void usernameCorrectlyFormatted() {
+        Login login = new Login();
+        String Username = "kyl_1";
+        boolean actual = login.checkUsername(Username);
+        assertTrue(actual, "True");
+
+    }
+    
+    @Test
+    public void usernameIncorrectlyFormatted() {
+        Login login = new Login();
+        String Username = "kyle!!!!!!!";
+        boolean actual = login.checkUsername(Username);
+        assertFalse(actual, "False");
+    }
+    
+    @Test
+    public void PasswordcorrectlyFormatted() {
+        Login login = new Login();
+        String password = "@Lincoln123";
+        boolean actual = login.checkPasswordComplexity(password);
+        assertTrue(actual, "True");
+    }
+    
+    @Test
+    public void PasswordIncorrectlyFormatted() {
+        Login login = new Login();
+        String password = "password";
+        boolean actual = login.checkPasswordComplexity(password);
+        assertFalse(actual, "False");
+    }
+    
+    @Test
+    public void correctCellphoneNumber() {
+        Login login = new Login();
+        String number = "+27838968976";
+        boolean actual = login.checkCellphoneNumber(number);
+        assertTrue(actual, "True");
+    }
+    
+    @Test
+    public void incorrectCellphoneNumber() {
+        Login login = new Login();
+        String number = "08966553";
+        boolean actual = login.checkCellphoneNumber(number);
+        assertFalse(actual, "False");
     }
 }
