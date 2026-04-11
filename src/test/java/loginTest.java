@@ -38,4 +38,21 @@ public class loginTest {
         boolean actual = login.checkCellphoneNumber(phoneNumber);
         assertEquals(expected, actual, "checkCellphoneNumber() method failed testing!");
     }
+    
+    @Test
+    public void testRegisterUser() {
+        Login login = new Login();
+        String Username = "U_ser";
+        String Password = "@Timmy123";
+        String expected = Username + " has been successfully registered";
+        String actual = login.registerUser(Username, Password);
+        assertEquals(expected, actual, "testRegisterUser() function failed");
+        
+        String Username2 = "Panna_22";
+        String Password2 = "Pan22";
+        String expected2 = "Username is incorrectly formatted";
+        String actual2 = login.registerUser(Username2, Password2);
+        assertEquals(expected2, actual2, "testRegisterUser() function failed");
+         
+    }
 }

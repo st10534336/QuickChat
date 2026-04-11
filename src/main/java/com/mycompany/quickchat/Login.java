@@ -10,6 +10,9 @@ package com.mycompany.quickchat;
  */
 public class Login {
     
+    String incorrectlyFormattedUsernameMessage = "Username is incorrectly formatted";
+    String incorrectlyFormattedPasswordMessage = "Password does not meet complexity requirements";
+    
     public boolean checkUsername(String userName) {
         return (userName.contains("_") && userName.length() <= 5);
     }
@@ -53,4 +56,30 @@ public class Login {
         
         return (startWithCountryCode && isTwelveDigitsLong);
     }
+    
+    public String registerUser(String Username, String Password) {
+        boolean usernameCorrectlyFormatted = checkUsername(Username);
+        boolean passwordMeetsComplexityRequirements = checkPasswordComplexity(Password);
+        
+ 
+        String returnMessage = "";
+        
+        if (usernameCorrectlyFormatted && passwordMeetsComplexityRequirements) {
+            returnMessage = Username + " has been successfully registered";
+            return returnMessage;
+        }
+        else {
+            if (!usernameCorrectlyFormatted) {
+            returnMessage = this.incorrectlyFormattedUsernameMessage;
+            return returnMessage;
+            }
+            if (!passwordMeetsComplexityRequirements) {
+                returnMessage = this.incorrectlyFormattedPasswordMessage;
+            return returnMessage;
+            }
+        }
+        return "";
+                
+    }
+    
 }
