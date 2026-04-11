@@ -40,7 +40,9 @@ public class Login {
             //check if the current character is a capital letter
             if ((password.charAt(i) == uppercasePassword.charAt(i)) && Character.isLetter(password.charAt(i))) {
                 containsCapitalLetter = true;
-                System.out.println(password.charAt(i));
+                
+                //old debug code
+                //System.out.println(password.charAt(i));
             }
             
             //check if the current character is a digit
@@ -104,8 +106,11 @@ public class Login {
     }
     
     public String returnLoginStatus (boolean loginUserResult) {
-        System.out.println("");
-        System.out.println("loginUserResult " + loginUserResult);
+        
+        //old debugging code    
+        //System.out.println("");
+        //System.out.println("loginUserResult " + loginUserResult);
+        
         if (loginUserResult) {
             return this.successfulLoginMessage;
         }
@@ -161,7 +166,7 @@ public class Login {
         
         System.out.println("");
         System.out.println(login.usernameSuccessfulCaptureMessage);
-        System.out.println(login.usernameSuccessfulCaptureMessage);
+        System.out.println(login.passwordSuccessfulCaptureMassage);
         System.out.println("");
         
         System.out.println("Please Enter cellphone number e.g +27837657898");
@@ -210,7 +215,9 @@ public class Login {
             
         }
         
+        //say that the login was successful and greet the user
         System.out.println(loginStatus);
+        System.out.println("Welcome " + firstName + " " + lastName + ", it's great to see you again!");
     
     }
 }
