@@ -15,8 +15,8 @@ public class Login {
     String incorrectlyFormattedNumber = "Number was incorrectly formatted";
     String passwordRequirementMessage = "incorrectly formatted password, please re-enter password \n it must have a minimum of 8 charaters, 1 special character, 1 Capital letter and it must contain a number";
     String usernameRequirementMessage = "incorrectly formatted username, the username must be no longer than 5 character and must contain a underscore";
-    String successfulLoginMessage = "login was successful";
-    String failedLoginMessage = "the login was unsuccessful :(";
+    String successfulLoginMessage = "login was successful :D";
+    String failedLoginMessage = "login was unsuccessful :(";
     
     public boolean checkUsername(String userName) {
         return (userName.contains("_") && userName.length() <= 5);
@@ -101,9 +101,9 @@ public class Login {
         System.out.println("");
         System.out.println("loginUserResult " + loginUserResult);
         if (loginUserResult) {
-            return "Login was Successful";
+            return this.successfulLoginMessage;
         }
-        return "Login failed";
+        return this.failedLoginMessage;
     }
     
     public static void main(String[] args) {
@@ -162,5 +162,19 @@ public class Login {
             cellphone = scanner.nextLine();
             cellphoneCheck = login.checkCellphoneNumber(cellphone);
         }
+        
+        System.out.println("");
+        System.out.println("---------------------------");
+        System.out.println("LOGIN WINDOW");
+        
+        System.out.println("Please enter your username");
+        String usernameAttempt = scanner.nextLine();
+        
+        System.out.println("Please enter your password");
+        String passwordAttempt = scanner.nextLine();
+        
+        boolean loginUser = login.loginUser(username, password, usernameAttempt, passwordAttempt);
+        String loginStatus = login.returnLoginStatus(loginUser);
+        System.out.println(loginStatus);
     }
 }
