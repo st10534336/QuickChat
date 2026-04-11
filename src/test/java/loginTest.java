@@ -36,12 +36,21 @@ public class loginTest {
     }
     
     @Test
-    public void testCheckPasswordComplexity() {
+    public void testCheckPasswordComplexityOfCorrectPassword() {
         Login login = new Login();
-        String password = "@Password12";
+        String password = "Ch&&sec@ke99!";
         boolean expected = true;
         boolean actual = login.checkPasswordComplexity(password);
-        assertEquals(expected, actual, "checkPasswordComplexity() method failed testing!");
+        assertEquals(expected, actual, login.PASSWORD_SUCCESSFUL_CAPTURE_MESSAGE);
+    }
+    
+    @Test
+    public void testCheckPasswordComplexityOfInCorrectPassword() {
+        Login login = new Login();
+        String password = "password";
+        boolean expected = false;
+        boolean actual = login.checkPasswordComplexity(password);
+        assertEquals(expected, actual, login.PASSWORD_REQUIREMENT_MESSAGE);
     }
     
     @Test
