@@ -149,14 +149,12 @@ public class Login {
         while (!regStatus.equals(regStatusSuccess)) {
             
             if (regStatus.equals(login.INCORRECLY_FORMATTED_PASSWORD_MESSAGE)) {
-                System.out.println(login.INCORRECLY_FORMATTED_PASSWORD_MESSAGE);
                 System.out.println(login.PASSWORD_REQUIREMENT_MESSAGE);
                 System.out.println("please re-enter password: ");
                 password = scanner.nextLine();
             }
             
             if (regStatus.equals(login.INCORRECLY_FORMATTED_USERNAME_MESSAGE)){
-                System.out.println(login.INCORRECLY_FORMATTED_USERNAME_MESSAGE);
                 System.out.println(login.USERNAME_REQUIREMENT_MESSAGE);
                 System.out.println("please re-enter username: ");
                 username = scanner.nextLine();
