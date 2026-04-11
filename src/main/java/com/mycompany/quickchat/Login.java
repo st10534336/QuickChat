@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.quickchat;
-
+import java.util.Scanner;
 /**
  *
  * @author User
@@ -101,4 +101,31 @@ public class Login {
         return "Login failed";
     }
     
+    public static void main(String[] args) {
+        
+        String firstName, lastName, username, password, cellphone;
+        Login login = new Login();
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("REGISTRATION WINDOW");
+        
+        System.out.println("Hello, Welcome to QuickChat");
+        
+        System.out.println("Please enter your first name: ");
+        firstName = scanner.nextLine();
+                
+        System.out.println("please enter your last name: ");
+        lastName = scanner.nextLine();
+        
+        System.out.println("Please enter your Username: ");
+        username = scanner.nextLine();
+        
+        System.out.println("please enter your Password: ");
+        password = scanner.nextLine();
+        
+        
+        
+        
+    }
 }
