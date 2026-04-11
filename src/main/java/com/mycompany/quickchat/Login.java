@@ -82,4 +82,14 @@ public class Login {
                 
     }
     
+    public boolean loginUser(String enteredUsername, String enteredPassword, String registeredUsername, String registeredPassword){    
+        boolean usernamesAreMatching = enteredUsername.equals(registeredUsername);
+        boolean passwordsAreMatching = enteredPassword.equals(registeredPassword);
+        
+        //System.out.println("Passwords are matching: " + passwordsAreMatching + ", " + enteredPassword + ", " + registeredPassword);
+        //System.out.println("Usernames are mathing: " + usernamesAreMatching + ", " + enteredUsername + ", " + registeredUsername);
+        
+        return (usernamesAreMatching && passwordsAreMatching);
+    } 
+    
 }
