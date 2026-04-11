@@ -12,11 +12,16 @@ public class Login {
     
     String incorrectlyFormattedUsernameMessage = "Username is incorrectly formatted";
     String incorrectlyFormattedPasswordMessage = "Password does not meet complexity requirements";
-    String incorrectlyFormattedNumber = "Number was incorrectly formatted";
+    String incorrectlyFormattedNumber = "Cellphone number incorrectly formatted or does not contain international code";
     String passwordRequirementMessage = "incorrectly formatted password, please re-enter password \n it must have a minimum of 8 charaters, 1 special character, 1 Capital letter and it must contain a number";
-    String usernameRequirementMessage = "incorrectly formatted username, the username must be no longer than 5 character and must contain a underscore";
+    String usernameRequirementMessage = "username is not correctly formatted \nplease ensure that your username contains and underscore and is no longer than five characters in length.";
+    String usernameSuccessfulCaptureMessage = "Username has successfully been captured";
+    String passwordSuccessfulCaptureMassage = "Password has successfully been caputred";
+    String cellphoneNumberSuccessfullCaptureMessage = "Cellphone number successfully added";
+    
     String successfulLoginMessage = "login was successful :D";
     String failedLoginMessage = "login was unsuccessful :(";
+    String loginRetryMessage = "Username or password incorrect, please try again";
     
     public boolean checkUsername(String userName) {
         return (userName.contains("_") && userName.length() <= 5);
@@ -91,6 +96,7 @@ public class Login {
         boolean usernamesAreMatching = enteredUsername.equals(registeredUsername);
         boolean passwordsAreMatching = enteredPassword.equals(registeredPassword);
         
+        //old debugging code
         //System.out.println("Passwords are matching: " + passwordsAreMatching + ", " + enteredPassword + ", " + registeredPassword);
         //System.out.println("Usernames are mathing: " + usernamesAreMatching + ", " + enteredUsername + ", " + registeredUsername);
         
@@ -135,13 +141,15 @@ public class Login {
         while (!regStatus.equals(regStatusSuccess)) {
             
             if (regStatus.equals(login.incorrectlyFormattedPasswordMessage)) {
+                System.out.println(login.incorrectlyFormattedPasswordMessage);
                 System.out.println(login.passwordRequirementMessage);
                 System.out.println("please re-enter password: ");
                 password = scanner.nextLine();
             }
             
             if (regStatus.equals(login.incorrectlyFormattedUsernameMessage)){
-               System.out.println(login.usernameRequirementMessage);
+                System.out.println(login.incorrectlyFormattedUsernameMessage);
+                System.out.println(login.usernameRequirementMessage);
                 System.out.println("please re-enter username: ");
                 username = scanner.nextLine();
             }
@@ -151,10 +159,14 @@ public class Login {
             System.out.println(regStatus);
         }
         
-        
         System.out.println("");
+        System.out.println(login.usernameSuccessfulCaptureMessage);
+        System.out.println(login.usernameSuccessfulCaptureMessage);
+        System.out.println("");
+        
         System.out.println("Please Enter cellphone number e.g +27837657898");
         cellphone = scanner.nextLine();
+        
         boolean cellphoneCheck = login.checkCellphoneNumber(cellphone);
         while (!cellphoneCheck) {
             System.out.println(login.incorrectlyFormattedNumber);
@@ -162,10 +174,14 @@ public class Login {
             cellphone = scanner.nextLine();
             cellphoneCheck = login.checkCellphoneNumber(cellphone);
         }
-        
+            
         System.out.println("");
+        System.out.println(login.cellphoneNumberSuccessfullCaptureMessage);
+        System.out.println("");
+        
         System.out.println("---------------------------");
         System.out.println("LOGIN WINDOW");
+        System.out.println("");
         
         System.out.println("Please enter your username");
         String usernameAttempt = scanner.nextLine();
@@ -175,6 +191,26 @@ public class Login {
         
         boolean loginUser = login.loginUser(username, password, usernameAttempt, passwordAttempt);
         String loginStatus = login.returnLoginStatus(loginUser);
+        
         System.out.println(loginStatus);
+        
+        while (!loginUser) {
+            System.out.println("");
+            System.out.println(login.loginRetryMessage);
+            System.out.println("");
+            
+            System.out.println("Please enter your username");
+            usernameAttempt = scanner.nextLine();
+        
+            System.out.println("Please enter your password");
+            passwordAttempt = scanner.nextLine();
+            
+            loginUser = login.loginUser(username, password, usernameAttempt, passwordAttempt);
+            loginStatus = login.returnLoginStatus(loginUser);
+            
+        }
+        
+        System.out.println(loginStatus);
+    
     }
 }
