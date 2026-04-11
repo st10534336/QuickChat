@@ -12,9 +12,11 @@ public class Login {
     
     String incorrectlyFormattedUsernameMessage = "Username is incorrectly formatted";
     String incorrectlyFormattedPasswordMessage = "Password does not meet complexity requirements";
+    String incorrectlyFormattedNumber = "Number was incorrectly formatted";
     String passwordRequirementMessage = "incorrectly formatted password, please re-enter password \n it must have a minimum of 8 charaters, 1 special character, 1 Capital letter and it must contain a number";
     String usernameRequirementMessage = "incorrectly formatted username, the username must be no longer than 5 character and must contain a underscore";
-    
+    String successfulLoginMessage = "login was successful";
+    String failedLoginMessage = "the login was unsuccessful :(";
     
     public boolean checkUsername(String userName) {
         return (userName.contains("_") && userName.length() <= 5);
@@ -150,5 +152,15 @@ public class Login {
         }
         
         
+        System.out.println("");
+        System.out.println("Please Enter cellphone number e.g +27837657898");
+        cellphone = scanner.nextLine();
+        boolean cellphoneCheck = login.checkCellphoneNumber(cellphone);
+        while (!cellphoneCheck) {
+            System.out.println(login.incorrectlyFormattedNumber);
+            System.out.println("please re-enter phone number: ");
+            cellphone = scanner.nextLine();
+            cellphoneCheck = login.checkCellphoneNumber(cellphone);
+        }
     }
 }
