@@ -12,6 +12,9 @@ public class Login {
     
     String incorrectlyFormattedUsernameMessage = "Username is incorrectly formatted";
     String incorrectlyFormattedPasswordMessage = "Password does not meet complexity requirements";
+    String passwordRequirementMessage = "incorrectly formatted password, please re-enter password \n it must have a minimum of 8 charaters, 1 special character, 1 Capital letter and it must contain a number";
+    String usernameRequirementMessage = "incorrectly formatted username, the username must be no longer than 5 character and must contain a underscore";
+    
     
     public boolean checkUsername(String userName) {
         return (userName.contains("_") && userName.length() <= 5);
@@ -124,7 +127,27 @@ public class Login {
         System.out.println("please enter your Password: ");
         password = scanner.nextLine();
         
+        String regStatus = login.registerUser(username, password);
+        String regStatusSuccess = username + " has been successfully registered";
         
+        while (!regStatus.equals(regStatusSuccess)) {
+            
+            if (regStatus.equals(login.incorrectlyFormattedPasswordMessage)) {
+                System.out.println(login.passwordRequirementMessage);
+                System.out.println("please re-enter password: ");
+                password = scanner.nextLine();
+            }
+            
+            if (regStatus.equals(login.incorrectlyFormattedUsernameMessage)){
+               System.out.println(login.usernameRequirementMessage);
+                System.out.println("please re-enter username: ");
+                username = scanner.nextLine();
+            }
+            
+            regStatus = login.registerUser(username, password);
+            regStatusSuccess = username + " has been successfully registered";
+            System.out.println(regStatus);
+        }
         
         
     }
