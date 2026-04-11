@@ -19,8 +19,8 @@ public class Login {
     public final String USERNAME_REQUIREMENT_MESSAGE = "username is not correctly formatted \nplease ensure that your username contains and underscore and is no longer than five characters in length.";
     
     public final String USERNAME_SUCCESSFUL_CAPTURE_MESSAGE = "Username has successfully been captured";
-    public final String PASSWORD_SUCCESSFUL_CAPTURE_MESSAGE = "Password has successfully been caputred";
-    public final String CELLPHONE_NUMBER_SUCCESSFUL_CAPTURE_MESSAGE = "Cellphone number successfully added";
+    public final String PASSWORD_SUCCESSFUL_CAPTURE_MESSAGE = "Password has successfully been captured";
+    public final String CELLPHONE_NUMBER_SUCCESSFUL_CAPTURE_MESSAGE = "Cellphone number successfully captured";
     
     public final String SUCCESSFULL_LOGIN_MESSAGE = "login was successful :D";
     public final String FAILED_LOGIN_MESSAGE = "login was unsuccessful :(";
