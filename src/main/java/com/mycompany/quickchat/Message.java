@@ -22,11 +22,12 @@ class messageData {
 
 public class Message {
     private String messagesSent [];
+    public int MESSAGE_ID_LENGTH = 10;
     
     public String generateMessageID() {
         Random randomizer = new Random();
         String randomID = "";
-        while (randomID.length() != 10) {
+        while (randomID.length() != MESSAGE_ID_LENGTH) {
             String number = Integer.toString(randomizer.nextInt(0, 9));
             randomID += number;
         }
