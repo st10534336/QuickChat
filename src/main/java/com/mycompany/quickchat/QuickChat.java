@@ -108,6 +108,9 @@ public class QuickChat {
         
         //say that the login was successful and greet the user
         System.out.println(loginStatus);
-        System.out.println("Welcome " + firstName + " " + lastName + ", it's great to see you again!");
+        System.out.println("Welcome to QuickChat" + firstName + " " + lastName + "!, it's great to see you again!");
+        
+        
+        
     }
 }
