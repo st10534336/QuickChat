@@ -17,11 +17,18 @@ class messageData {
     public String recipientNumber;
     public String message;
     
+    public messageData (String rawMessageString, String recipientNumber, String messageID, String messageHash) {
+        this.message = rawMessageString;
+        this.recipientNumber = recipientNumber;
+        this.messageID = messageID;
+        this.messageHash = messageHash;
+    }
     
 }
 
 public class Message {
-    private String messagesSent [];
+    private messageData[] messagesSent;
+    private int numMessagesSent=0;
     
     public int MESSAGE_ID_LENGTH = 10;
     
@@ -52,26 +59,47 @@ public class Message {
         
     }
     
-    public String createMessageHash(String rawMessageText, String messageID) {
-        String first2Numbers = rawMessageText.substring(0, 1);
+    public String createMessageHash(String rawMessageString, String messageID) {
+        String first2Numbers = rawMessageString.substring(0, 2);
         String messageNumber = Integer.toString(this.messagesSent.length + 1);
-        String[] words = rawMessageText.split(" ");
+        String[] words = rawMessageString.split(" ");
         String firstWord = words[0];
         String lastWord = words[words.length - 1];
         String messageHash = first2Numbers + ":" + messageNumber + ":" + firstWord + lastWord;
         return messageHash;
     }
     
-    public String sentMessage(messageData messageData) {
-        return "";
+    public messageData genenrateMessageData(String rawMessageString, String recipientNumber) {
+        String newMessageID = generateMessageID();
+        String newMessageHash = createMessageHash(rawMessageString, newMessageID);
+        
+        messageData newMessageData = new messageData(rawMessageString, recipientNumber, newMessageID, newMessageHash);
+        return newMessageData;
     }
     
-    public String printMessages() {
-        return "";
+    public String sentMessage(int userInput) {
+        switch (userInput) {
+            case 1:
+                return "Message Successfully Sent";
+            case 2:
+                return "Press 0 to delete message";
+            case 3:
+                return "Message Successfully Stored";
+            default:
+                return "Invalid Selection";
+        }
+    }
+    
+    public String[] printMessages() {
+        String[] messages = {};
+        for (int i = 0; i<messagesSent.length; i++){
+            messages[i] = messagesSent[i].message;
+        }
+        return messages;
     }
     
     public int returnTotalMessages(){
-        return 1;
+        return numMessagesSent;
     }
     
     //The POE said this function should use JSONs to store messages
