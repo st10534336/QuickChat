@@ -109,9 +109,9 @@ public class QuickChat {
         
         //say that the login was successful and greet the user
         System.out.println(loginStatus);
-        System.out.println("Welcome to QuickChat" + firstName + " " + lastName + "!, it's great to see you again!");
+        System.out.println("Welcome to QuickChat " + firstName + " " + lastName + "!, it's great to see you again!");
         
-        
+       
         String initialPrompt = """
                            
                            
@@ -121,23 +121,72 @@ public class QuickChat {
         3. Quit
                            
                            """;
+        
         System.out.println(initialPrompt);
         
         Message message = new Message();
         int userInput = scanner.nextInt();
         
         while (userInput != 3) {
+            
             if (userInput == 1) {
+                
                 System.out.println("please enter recipient number e.g +27789082345");
+                scanner.nextLine();
                 String recipientNumber = scanner.nextLine();
                 
                 while(!login.checkCellphoneNumber(recipientNumber)) {
                     System.out.println(message.checkRecipientCell(recipientNumber));
+                    System.out.print("re-enter recipient cell: ");
                     recipientNumber = scanner.nextLine();
                }
                 
+                System.out.println("""
+                Enter the number of messages you will send (MAX 32)
+                                   """);
+                int numberOfMessages = scanner.nextInt();
                 
+                for (int messageCount=0; messageCount<Integer.min(Message.MAX_MESSAGE_CAPACITY, numberOfMessages); messageCount++) {
+                    
+                    scanner.nextLine();
+                    System.out.println("");
+                    System.out.println("Type message " + messageCount + ":");
+
+                    String rawMessageText = scanner.nextLine();
+                    while (rawMessageText.length() > Message.MAX_TEXT_CHARACTERS_LENGTH) {
+                        System.out.println("""
+
+                        Please enter a message of less than 250 characters!
+                        """);
+                        System.out.println("retype message: ");
+                        rawMessageText = scanner.nextLine();
+                    }
+                    messageData mData = message.genenrateMessageData(rawMessageText, recipientNumber);
+
+                    System.out.println("""
+
+                    choose what should happen with this message:
+                    1.send message
+                    2.disregard message
+                    3.Store message to send later
+                                       """);
+
+                    int userOption = scanner.nextInt();
+                    String messageSentStatus = message.sentMessage(userOption);
+                    
+                    if (userOption == 1) {
+                        message.saveMessage(mData);
+                        message.displayMessageDetails(mData);
+                    }
+                    
+                    System.out.println(messageSentStatus);
+                    //System.out.println(mData.messageHash);
+                    
+                    
+                }
+  
                 
+                             
                
             }
             else if (userInput == 2) {

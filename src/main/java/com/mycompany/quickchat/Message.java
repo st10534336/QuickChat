@@ -27,8 +27,11 @@ class messageData {
 }
 
 public class Message {
-    private messageData[] messagesSent;
+    public static final int MAX_TEXT_CHARACTERS_LENGTH = 250;
+    public static final int MAX_MESSAGE_CAPACITY = 32;
+    private messageData[] messagesSent = new messageData[MAX_MESSAGE_CAPACITY];
     private int numMessagesSent=0;
+    
     
     public int MESSAGE_ID_LENGTH = 10;
     
@@ -54,13 +57,14 @@ public class Message {
             return "Cellphone number successfully captured";
         }
         return """
+               
                Cellphone number is incorrectly formatted or does not contain an international code.
-                \n Please correct the number and try again.""";
+               Please correct the number and try again.""";
         
     }
     
     public String createMessageHash(String rawMessageString, String messageID) {
-        String first2Numbers = rawMessageString.substring(0, 2);
+        String first2Numbers = messageID.substring(0, 2);
         String messageNumber = Integer.toString(this.messagesSent.length + 1);
         String[] words = rawMessageString.split(" ");
         String firstWord = words[0];
@@ -98,6 +102,20 @@ public class Message {
         return messages;
     }
     
+    public void displayMessageDetails(messageData mData) {
+        System.out.println("");
+        System.out.println("Message ID: " + mData.messageID);
+        System.out.println("Message Hash: " + mData.messageHash);
+        System.out.println("Message Recipient: " + mData.recipientNumber);
+        System.out.println("Message: ");
+        System.out.println(mData.message);
+    }
+    
+    
+    public void saveMessage(messageData mData) {
+        messagesSent[numMessagesSent] = mData;
+        numMessagesSent += 1;
+    }
     public int returnTotalMessages(){
         return numMessagesSent;
     }
