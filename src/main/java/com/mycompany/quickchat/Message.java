@@ -27,9 +27,13 @@ class messageData {
 }
 
 public class Message {
-    public static final int MAX_TEXT_CHARACTERS_LENGTH = 250;
-    public static final int MAX_MESSAGE_CAPACITY = 32;
-    private messageData[] messagesSent = new messageData[MAX_MESSAGE_CAPACITY];
+    public static final int MAX_MESSAGE_CHARACTERS_LENGTH = 250;
+    public static final int MAX_MESSAGE_STORAGE_CAPACITY = 32;
+    
+    public static final String MESSAGE_LENGTH_STATUS_PASS_TEXT = """
+                   Message is ready to send.""";
+    
+    private messageData[] messagesSent = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];
     private int numMessagesSent=0;
     
     
@@ -54,7 +58,7 @@ public class Message {
         boolean cellTest = login.checkCellphoneNumber(phonenumber);
         
         if (cellTest) {
-            return "Cellphone number successfully captured";
+            return MESSAGE_LENGTH_STATUS_PASS_TEXT;
         }
         return """
                
@@ -79,6 +83,15 @@ public class Message {
         
         messageData newMessageData = new messageData(rawMessageString, recipientNumber, newMessageID, newMessageHash);
         return newMessageData;
+    }
+    
+    public String messageLengthStatus(String messageText) {
+        if (messageText.length() <= MAX_MESSAGE_CHARACTERS_LENGTH) {
+            return MESSAGE_LENGTH_STATUS_PASS_TEXT;
+        }
+        else {
+            return "Message exceeds 250 characters by " + Integer.toString(messageText.length() - Message.MAX_MESSAGE_CHARACTERS_LENGTH);
+        }
     }
     
     public String sentMessage(int userInput) {

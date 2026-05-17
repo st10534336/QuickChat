@@ -146,21 +146,23 @@ public class QuickChat {
                                    """);
                 int numberOfMessages = scanner.nextInt();
                 
-                for (int messageCount=0; messageCount<Integer.min(Message.MAX_MESSAGE_CAPACITY, numberOfMessages); messageCount++) {
+                for (int messageCount=0; messageCount<Integer.min(Message.MAX_MESSAGE_STORAGE_CAPACITY, numberOfMessages); messageCount++) {
                     
                     scanner.nextLine();
                     System.out.println("");
                     System.out.println("Type message " + messageCount + ":");
 
                     String rawMessageText = scanner.nextLine();
-                    while (rawMessageText.length() > Message.MAX_TEXT_CHARACTERS_LENGTH) {
-                        System.out.println("""
-
-                        Please enter a message of less than 250 characters!
-                        """);
+                    String messageLengthStatus = message.messageLengthStatus(rawMessageText);
+                    System.out.println(messageLengthStatus);
+                    
+                    while (rawMessageText.length() > Message.MAX_MESSAGE_CHARACTERS_LENGTH) {
+                        System.out.println(messageLengthStatus);
                         System.out.println("retype message: ");
                         rawMessageText = scanner.nextLine();
+                        messageLengthStatus = message.messageLengthStatus(rawMessageText);
                     }
+                    
                     messageData mData = message.genenrateMessageData(rawMessageText, recipientNumber);
 
                     System.out.println("""
