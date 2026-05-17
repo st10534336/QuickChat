@@ -4,6 +4,7 @@
 
 package com.mycompany.quickchat;
 import com.mycompany.quickchat.Login;
+import com.mycompany.quickchat.Message;
 import java.util.Scanner;
 /**
  *
@@ -111,6 +112,46 @@ public class QuickChat {
         System.out.println("Welcome to QuickChat" + firstName + " " + lastName + "!, it's great to see you again!");
         
         
+        String initialPrompt = """
+                           
+                           
+        Enter the number for the action you want to perform:
+        1. Send Messages
+        2. Show Recently sent Messages (coming soon)
+        3. Quit
+                           
+                           """;
+        System.out.println(initialPrompt);
         
+        Message message = new Message();
+        int userInput = scanner.nextInt();
+        
+        while (userInput != 3) {
+            if (userInput == 1) {
+                System.out.println("please enter recipient number e.g +27789082345");
+                String recipientNumber = scanner.nextLine();
+                
+                while(!login.checkCellphoneNumber(recipientNumber)) {
+                    System.out.println(message.checkRecipientCell(recipientNumber));
+                    recipientNumber = scanner.nextLine();
+               }
+                
+                
+                
+               
+            }
+            else if (userInput == 2) {
+                System.out.println("Feature is still a work-in-progress");
+            }
+            else {
+                System.out.println("Invalid Input");
+            }
+            System.out.println(initialPrompt);
+            userInput = scanner.nextInt();
+        }
+        
+        System.out.println("Thank you for using quickChat");
+    
+    
     }
 }
