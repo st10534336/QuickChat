@@ -22,6 +22,7 @@ class messageData {
 
 public class Message {
     private String messagesSent [];
+    
     public int MESSAGE_ID_LENGTH = 10;
     
     public String generateMessageID() {
@@ -38,7 +39,7 @@ public class Message {
         return messageID.length() == 10;
     }
     
-    public String checkRecientCell(String phonenumber) {
+    public String checkRecipientCell(String phonenumber) {
         Login login = new Login();
         boolean cellTest = login.checkCellphoneNumber(phonenumber);
         
@@ -51,12 +52,17 @@ public class Message {
         
     }
     
-    public String createMessageHash(String message) {
-        
-        return "";
+    public String createMessageHash(String rawMessageText, String messageID) {
+        String first2Numbers = rawMessageText.substring(0, 1);
+        String messageNumber = Integer.toString(this.messagesSent.length + 1);
+        String[] words = rawMessageText.split(" ");
+        String firstWord = words[0];
+        String lastWord = words[words.length - 1];
+        String messageHash = first2Numbers + ":" + messageNumber + ":" + firstWord + lastWord;
+        return messageHash;
     }
     
-    public String sentMessage() {
+    public String sentMessage(messageData messageData) {
         return "";
     }
     
