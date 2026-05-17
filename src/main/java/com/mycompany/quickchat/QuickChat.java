@@ -142,7 +142,7 @@ public class QuickChat {
                }
                 
                 System.out.println("""
-                Enter the number of messages you will send (MAX 32)
+                Enter the number of messages you will send
                                    """);
                 int numberOfMessages = scanner.nextInt();
                 
