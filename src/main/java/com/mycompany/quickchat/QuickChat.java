@@ -151,7 +151,7 @@ public class QuickChat {
                     
                     scanner.nextLine();
                     System.out.println("");
-                    System.out.println("Type message " + messageCount + ":");
+                    System.out.println("Type message " + (messageCount+1) + ":");
 
                     String rawMessageText = scanner.nextLine();
                     String messageLengthStatus = message.messageLengthStatus(rawMessageText);
