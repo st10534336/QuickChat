@@ -33,6 +33,16 @@ public class Message {
     public static final String MESSAGE_LENGTH_STATUS_PASS_TEXT = """
                    Message is ready to send.""";
     
+    public static final String CHECK_RECIPIENT_CELL_PASS_TEXT = "Cellphone number successfully captured";
+    public static final String CHECK_RECIPIENT_CELL_FAIL_TEXT = """
+                               Cellphone number is incorrectly formatted or does not contain an international code.
+                               Please correct the number and try again.""";
+    
+    public static final String USER_SELECTED_SEND_MESSAGE_TEXT = "Message Successfully Sent";
+    public static final String USER_SELECTED_DISREGARD_MESSAGE_TEXT = "Press 0 to delete message";
+    public static final String USER_SELECTED_STORE_MESSAGE_TEXT = "Message Successfully Stored";
+    
+    
     private messageData[] messagesSent = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];
     private int numMessagesSent=0;
     
@@ -58,12 +68,9 @@ public class Message {
         boolean cellTest = login.checkCellphoneNumber(phonenumber);
         
         if (cellTest) {
-            return "Cellphone number successfully captured";
+            return CHECK_RECIPIENT_CELL_PASS_TEXT;
         }
-        return """
-               
-               Cellphone number is incorrectly formatted or does not contain an international code.
-               Please correct the number and try again.""";
+        return CHECK_RECIPIENT_CELL_FAIL_TEXT;
         
     }
     
@@ -71,8 +78,8 @@ public class Message {
         String first2Numbers = messageID.substring(0, 2);
         String messageNumber = Integer.toString(this.messagesSent.length + 1);
         String[] words = rawMessageString.split(" ");
-        String firstWord = words[0];
-        String lastWord = words[words.length - 1];
+        String firstWord = words[0].toUpperCase();
+        String lastWord = words[words.length - 1].toUpperCase();
         String messageHash = first2Numbers + ":" + messageNumber + ":" + firstWord + lastWord;
         return messageHash;
     }
@@ -97,11 +104,11 @@ public class Message {
     public String sentMessage(int userInput) {
         switch (userInput) {
             case 1:
-                return "Message Successfully Sent";
+                return USER_SELECTED_SEND_MESSAGE_TEXT;
             case 2:
-                return "Press 0 to delete message";
+                return USER_SELECTED_DISREGARD_MESSAGE_TEXT;
             case 3:
-                return "Message Successfully Stored";
+                return USER_SELECTED_STORE_MESSAGE_TEXT;
             default:
                 return "Invalid Selection";
         }

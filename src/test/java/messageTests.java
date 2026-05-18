@@ -37,4 +37,49 @@ public class messageTests {
         assertEquals(expected, actual);
     }
     
+    @Test 
+    public void recipientNumberCorrectlyFormatted() {
+        Message message = new Message();
+        String correctlyFormattedNumber = "+27718693002";
+        String expected = Message.CHECK_RECIPIENT_CELL_PASS_TEXT;
+        String actual = message.checkRecipientCell(correctlyFormattedNumber);
+        assertEquals(expected, actual);
+    }
+    
+    @Test 
+    public void recipientNumberIncorrectlyFormatted() {
+        Message message = new Message();
+        String incorrectlyFormattedNumber = "08575975889";
+        String expected = Message.CHECK_RECIPIENT_CELL_FAIL_TEXT;
+        String actual = message.checkRecipientCell(incorrectlyFormattedNumber);
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void messageIDTest() {
+        Message message = new Message();
+        String expected = "Message ID generated" + message.generateMessageID();
+        assertEquals(expected, expected);
+    
+    }
+    
+    @Test
+    public void sentMessageTest() {
+        Message message = new Message();
+        String userSelectOptionOneExpected = Message.USER_SELECTED_SEND_MESSAGE_TEXT;
+        String userSelectOptionOneActual = message.sentMessage(1);
+        
+        String userSelectOptionTwoExpected = Message.USER_SELECTED_DISREGARD_MESSAGE_TEXT;
+        String userSelectOptionTwoActual = message.sentMessage(2);
+        
+        String userSelectOptionThreeExpected = Message.USER_SELECTED_STORE_MESSAGE_TEXT;
+        String userSelectOptionThreeActual = message.sentMessage(3);
+    
+        assertEquals(userSelectOptionOneExpected, userSelectOptionOneActual);
+        assertEquals(userSelectOptionTwoExpected, userSelectOptionTwoActual);
+        assertEquals(userSelectOptionThreeExpected, userSelectOptionThreeActual);
+
+    }
+    
+    
 }
