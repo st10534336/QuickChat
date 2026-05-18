@@ -140,6 +140,7 @@ public class QuickChat {
                     System.out.print("re-enter recipient cell: ");
                     recipientNumber = scanner.nextLine();
                }
+                System.out.println(message.checkRecipientCell(recipientNumber));
                 
                 System.out.println("""
                 Enter the number of messages you will send
@@ -154,7 +155,6 @@ public class QuickChat {
 
                     String rawMessageText = scanner.nextLine();
                     String messageLengthStatus = message.messageLengthStatus(rawMessageText);
-                    System.out.println(messageLengthStatus);
                     
                     while (rawMessageText.length() > Message.MAX_MESSAGE_CHARACTERS_LENGTH) {
                         System.out.println(messageLengthStatus);
@@ -162,6 +162,7 @@ public class QuickChat {
                         rawMessageText = scanner.nextLine();
                         messageLengthStatus = message.messageLengthStatus(rawMessageText);
                     }
+                    System.out.println(messageLengthStatus);
                     
                     messageData mData = message.genenrateMessageData(rawMessageText, recipientNumber);
 

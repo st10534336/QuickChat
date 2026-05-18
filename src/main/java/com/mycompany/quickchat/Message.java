@@ -58,7 +58,7 @@ public class Message {
         boolean cellTest = login.checkCellphoneNumber(phonenumber);
         
         if (cellTest) {
-            return MESSAGE_LENGTH_STATUS_PASS_TEXT;
+            return "Cellphone number successfully captured";
         }
         return """
                
