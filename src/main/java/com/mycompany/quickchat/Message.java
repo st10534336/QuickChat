@@ -76,7 +76,7 @@ public class Message {
     
     public String createMessageHash(String rawMessageString, String messageID) {
         String first2Numbers = messageID.substring(0, 2);
-        String messageNumber = Integer.toString(this.messagesSent.length + 1);
+        String messageNumber = Integer.toString(this.numMessagesSent + 1);
         String[] words = rawMessageString.split(" ");
         String firstWord = words[0].toUpperCase();
         String lastWord = words[words.length - 1].toUpperCase();
