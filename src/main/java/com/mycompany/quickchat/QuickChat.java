@@ -118,7 +118,8 @@ public class QuickChat {
         Enter the number for the action you want to perform:
         1. Send Messages
         2. Show Recently sent Messages (coming soon)
-        3. Quit
+        3. Show stored messages
+        4. Quit
                            
                            """;
         
@@ -195,6 +196,11 @@ public class QuickChat {
             else if (userInput == 2) {
                 System.out.println("Feature is still a work-in-progress");
             }
+            
+            else if (userInput == 3) {
+                System.out.println("{STORED MESSAGES}");
+            }
+            
             else {
                 System.out.println("Invalid Input");
             }

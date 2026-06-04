@@ -5,6 +5,7 @@
 package com.mycompany.quickchat;
 import java.util.Random;
 import com.mycompany.quickchat.Login;
+import com.google.gson.Gson;
 /**
  *
  * @author Student
@@ -27,8 +28,6 @@ class messageData {
 }
 
 public class Message {
-    public static final int MAX_MESSAGE_CHARACTERS_LENGTH = 250;
-    public static final int MAX_MESSAGE_STORAGE_CAPACITY = 32;
     
     public static final String MESSAGE_LENGTH_STATUS_PASS_TEXT = """
                    Message is ready to send.""";
@@ -42,12 +41,18 @@ public class Message {
     public static final String USER_SELECTED_DISREGARD_MESSAGE_TEXT = "Press 0 to delete message";
     public static final String USER_SELECTED_STORE_MESSAGE_TEXT = "Message Successfully Stored";
     
+    public static final int MAX_MESSAGE_CHARACTERS_LENGTH = 250;
+    public static final int MAX_MESSAGE_STORAGE_CAPACITY = 250;
     
-    private messageData[] messagesSent = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];
-    private int numMessagesSent=0;
+    messageData[] messagesSent = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];
+    messageData[] discardedMessages = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];   
+    messageData[] storedMessages = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];
+    String[] messageHashes = new String[MAX_MESSAGE_STORAGE_CAPACITY];
+    String[] messageIDs = new String[MAX_MESSAGE_STORAGE_CAPACITY];
+
     
-    
-    public int MESSAGE_ID_LENGTH = 10;
+    int numMessagesSent=0;
+    final public int MESSAGE_ID_LENGTH = 10;
     
     public String generateMessageID() {
         Random randomizer = new Random();
@@ -141,7 +146,8 @@ public class Message {
     }
     
     //The POE said this function should use JSONs to store messages
-    public void storeMessage() {
+    public void storeMessage(messageData mData) {
+        
     }
     
 }
