@@ -182,6 +182,10 @@ public class QuickChat {
                         message.saveMessage(mData);
                         message.displayMessageDetails(mData);
                     }
+                    else if (userOption == 2) {
+                        message.discardMessage(mData);
+                    }
+                    
                     
                     System.out.println(messageSentStatus);
                     //System.out.println(mData.messageHash);

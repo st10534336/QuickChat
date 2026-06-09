@@ -5,7 +5,11 @@
 package com.mycompany.quickchat;
 import java.util.Random;
 import com.mycompany.quickchat.Login;
+
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.*;
+
 /**
  *
  * @author Student
@@ -145,9 +149,14 @@ public class Message {
         return numMessagesSent;
     }
     
+    public void discardMessage(messageData mData) {
+        discardedMessages[discardedMessages.length] = mData;
+    }
+    
+    
+    
     //The POE said this function should use JSONs to store messages
     public void storeMessage(messageData mData) {
-        
     }
     
 }
