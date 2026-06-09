@@ -91,6 +91,7 @@ public class QuickChat {
         
         System.out.println(loginStatus);
         
+        
         while (!loginUser) {
             System.out.println("");
             System.out.println(login.LOGIN_RETRY_MESSAGE);
