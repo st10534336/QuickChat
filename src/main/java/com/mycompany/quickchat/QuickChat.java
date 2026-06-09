@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class QuickChat {
 
     public static void main(String[] args) {
-        String firstName, lastName, username, password, cellphone;
+        String firstName, lastName, username, password, userCellphone;
         Login login = new Login();
         
         Scanner scanner = new Scanner(System.in);
@@ -62,14 +62,14 @@ public class QuickChat {
         System.out.println("");
         
         System.out.println("Please Enter cellphone number e.g +27837657898");
-        cellphone = scanner.nextLine();
+        userCellphone = scanner.nextLine();
         
-        boolean cellphoneCheck = login.checkCellphoneNumber(cellphone);
+        boolean cellphoneCheck = login.checkCellphoneNumber(userCellphone);
         while (!cellphoneCheck) {
             System.out.println(login.INCORRECTLY_FORMATTED_CELLPHONE_NUMBER);
             System.out.println("please re-enter phone number: ");
-            cellphone = scanner.nextLine();
-            cellphoneCheck = login.checkCellphoneNumber(cellphone);
+            userCellphone = scanner.nextLine();
+            cellphoneCheck = login.checkCellphoneNumber(userCellphone);
         }
             
         System.out.println("");
@@ -118,7 +118,7 @@ public class QuickChat {
         Enter the number for the action you want to perform:
         1. Send Messages
         2. Show Recently sent Messages (coming soon)
-        3. Show stored messages
+        3. Stored messages
         4. Quit
                            
                            """;
@@ -126,9 +126,12 @@ public class QuickChat {
         System.out.println(initialPrompt);
         
         Message message = new Message();
+        
+        message.loadStoredMessagesStateFromJson();
+        
         int userInput = scanner.nextInt();
         
-        while (userInput != 3) {
+        while (userInput != 4) {
             
             if (userInput == 1) {
                 
@@ -165,7 +168,7 @@ public class QuickChat {
                     }
                     System.out.println(messageLengthStatus);
                     
-                    messageData mData = message.genenrateMessageData(rawMessageText, recipientNumber);
+                    messageData mData = message.genenrateMessageData(rawMessageText, userCellphone, recipientNumber);
 
                     System.out.println("""
 
@@ -185,7 +188,11 @@ public class QuickChat {
                     else if (userOption == 2) {
                         message.discardMessage(mData);
                     }
-                    
+                    else if (userOption == 3) {
+                        message.storeMessage(mData);
+                        System.out.println("message saved, Details Below:");
+                        message.displayMessageDetails(mData);
+                    }
                     
                     System.out.println(messageSentStatus);
                     //System.out.println(mData.messageHash);
@@ -202,15 +209,30 @@ public class QuickChat {
             }
             
             else if (userInput == 3) {
-                System.out.println("{STORED MESSAGES}");
+                System.out.println("""
+                enter the number for your preferred action
+                1.display sender and recipient of all stored messages
+                2.display longest stored message
+                3.find message via message ID
+                4.search for all messages of a recipient via number
+                5.delete message via hash
+                6.Display all stored messages (all information included)
+                                   """);
+                scanner.nextLine();
+                int userOption = Integer.parseInt(scanner.nextLine());
+                
+                if (userOption == 1) {
+                    System.out.println("");
+                }
             }
-            
             else {
                 System.out.println("Invalid Input");
             }
             System.out.println(initialPrompt);
             userInput = scanner.nextInt();
         }
+        
+        message.saveStoredMessagesStateToJson();
         
         System.out.println("Thank you for using quickChat");
     
