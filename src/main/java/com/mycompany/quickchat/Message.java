@@ -8,7 +8,9 @@ import com.mycompany.quickchat.Login;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.*;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -45,6 +47,8 @@ public class Message {
     public static final String USER_SELECTED_DISREGARD_MESSAGE_TEXT = "Press 0 to delete message";
     public static final String USER_SELECTED_STORE_MESSAGE_TEXT = "Message Successfully Stored";
     
+    public static final String MESSAGE_STORAGE_FILE_NAME = "savedMessages.json";
+    
     public static final int MAX_MESSAGE_CHARACTERS_LENGTH = 250;
     public static final int MAX_MESSAGE_STORAGE_CAPACITY = 250;
     
@@ -54,6 +58,7 @@ public class Message {
     String[] messageHashes = new String[MAX_MESSAGE_STORAGE_CAPACITY];
     String[] messageIDs = new String[MAX_MESSAGE_STORAGE_CAPACITY];
 
+    
     
     int numMessagesSent=0;
     final public int MESSAGE_ID_LENGTH = 10;
@@ -149,6 +154,54 @@ public class Message {
         return numMessagesSent;
     }
     
+    public void saveStoredMessagesStateToJson () {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        // 3. Serialize and write data directly to the file
+        
+        //writing to a file
+        try (FileWriter writer = new FileWriter(MESSAGE_STORAGE_FILE_NAME)) {
+            
+            gson.toJson(storedMessages, writer);
+            System.out.println("JSON successfully saved to " + MESSAGE_STORAGE_FILE_NAME);
+            
+        } catch (IOException e) {
+            
+            System.err.println("Error writing JSON file: " + e.getMessage());
+            
+        }
+    }
+    
+    public void loadStoredMessagesStateFromJson() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        
+        try (FileReader reader = new FileReader(MESSAGE_STORAGE_FILE_NAME)) {
+            
+            storedMessages = gson.fromJson(reader, messageData[].class);
+        }
+        catch (IOException e) {
+            System.err.println("Error reading JSON file: " + e.getMessage());
+        }
+    }
+    
+    
+    public void deleteMessage(messageData mData) {
+        messageData[] tempArray = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];
+        
+        for (int i=0; i<storedMessages.length; i++) {
+            if (!storedMessages[i].messageHash.equals(mData.messageHash)) {
+                tempArray[i] = storedMessages[i];
+            } 
+        }
+        
+        storedMessages = tempArray;
+        
+        saveStoredMessagesStateToJson();
+    }
+    
+    public void deleteMessageWithHash(String hash) {
+    }
+    
     public void discardMessage(messageData mData) {
         discardedMessages[discardedMessages.length] = mData;
     }
@@ -157,6 +210,8 @@ public class Message {
     
     //The POE said this function should use JSONs to store messages
     public void storeMessage(messageData mData) {
+        storedMessages[storedMessages.length] = mData;
+        saveStoredMessagesStateToJson();
     }
     
 }
