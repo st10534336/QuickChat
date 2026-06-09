@@ -185,11 +185,11 @@ public class Message {
     }
     
     
-    public void deleteMessage(messageData mData) {
+    public void deleteMessageWithHash(String messageHash) {
         messageData[] tempArray = new messageData[MAX_MESSAGE_STORAGE_CAPACITY];
         
         for (int i=0; i<storedMessages.length; i++) {
-            if (!storedMessages[i].messageHash.equals(mData.messageHash)) {
+            if (!storedMessages[i].messageHash.equals(messageHash)) {
                 tempArray[i] = storedMessages[i];
             } 
         }
@@ -199,8 +199,6 @@ public class Message {
         saveStoredMessagesStateToJson();
     }
     
-    public void deleteMessageWithHash(String hash) {
-    }
     
     public void discardMessage(messageData mData) {
         discardedMessages[discardedMessages.length] = mData;
