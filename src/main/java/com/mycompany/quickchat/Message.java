@@ -6,6 +6,7 @@ package com.mycompany.quickchat;
 import java.util.Random;
 import java.util.Scanner;
 import com.mycompany.quickchat.Login;
+import com.mycompany.quickchat.messageData;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -25,24 +26,6 @@ import java.sql.SQLOutput;
  *
  * @author Student
  */
-
-class messageData {
-    //public int numberOfSentMessages;
-    public String messageHash;
-    public String messageID;
-    public String senderNumber;
-    public String recipientNumber;
-    public String message;
-    
-    public messageData (String rawMessageString, String recipientNumber, String senderNumber, String messageID, String messageHash) {
-        this.message = rawMessageString;
-        this.senderNumber = senderNumber;
-        this.recipientNumber = recipientNumber;
-        this.messageID = messageID;
-        this.messageHash = messageHash;
-    }
-    
-}
 
 public class Message {
     
@@ -126,7 +109,7 @@ public class Message {
     }
     
     
-    public messageData genenrateMessageData(String rawMessageString, String senderNumber, String recipientNumber) {
+    public messageData generateMessageData(String rawMessageString, String senderNumber, String recipientNumber) {
         String newMessageID = generateMessageID();
         String newMessageHash = createMessageHash(rawMessageString, newMessageID);
         
@@ -198,6 +181,13 @@ public class Message {
         }
     }
     
+    public String[] getSentMessages() {
+        String[] messages = new String[messagesSent.size()];
+        for (int i = 0; i<messagesSent.size(); i++) {
+            messages[i] = messagesSent.get(i).message;
+        }
+        return messages;
+    }
     
     public String showLongestStoredMessage() {
         messageData largestMessage = storedMessages.get(0);

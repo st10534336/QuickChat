@@ -169,7 +169,7 @@ public class QuickChat {
                     }
                     System.out.println(messageLengthStatus);
                     
-                    messageData mData = message.genenrateMessageData(rawMessageText, userCellphone, recipientNumber);
+                    messageData mData = message.generateMessageData(rawMessageText, userCellphone, recipientNumber);
 
                     System.out.println("""
 
