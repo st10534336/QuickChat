@@ -8,9 +8,7 @@ import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.*;
 import com.mycompany.quickchat.Message;
-import com.mycompany.quickchat.Message;
 import com.mycompany.quickchat.messageData;
-import org.junit.jupiter.api.BeforeAll;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,11 +19,15 @@ import org.junit.jupiter.api.TestMethodOrder;
  */
 
 // !!!! DELETE storedMessageTestJSON.json before this JUNIT Test is RUN !!!!!!
+//So after Running this the first time, delete the storedMessageTestJSON.json file and rerun it again
+//if not the test will fail due to the searchMessagesStoredForRecipient() test
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 1. Keeps variables alive across tests
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class storedMessagesTest {
+    final String jsonTestFileName = "storedMessageTestJSON.json";
     
-    Message message = new Message("storedMessageTestJSON.json");
+    Message message = new Message(jsonTestFileName);
     
     String[] messages = {"Did you get the cake?", "Where are you? You are late! I have asked you to be on time.",
                         "yohoooo, I am at your gate.", "it is dinner time !", "Ok I am leaving without you."};
@@ -42,6 +44,7 @@ public class storedMessagesTest {
     @Test
     @Order(1)
     public void populateArrays() {
+        
         message.sendMessage(message1);
         message.storeMessage(message2);
         message.discardMessage(message3);
@@ -55,7 +58,6 @@ public class storedMessagesTest {
     @Test
     @Order(2)
     public void checkSentMessagesCorrectlyPopulated() {
-        System.out.println("inside second test, messagesSent is equals to: "+message.messagesSent.size());
         String[] expected = {message1.message, message4.message};
         String[] actual = message.getSentMessages();
         assertArrayEquals(expected, actual);

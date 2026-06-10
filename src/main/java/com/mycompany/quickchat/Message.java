@@ -238,10 +238,13 @@ public class Message {
         ArrayList<String> messagesForParticularRecipient = new ArrayList<>();
         
         for (int i=0; i<storedMessages.size(); i++) {
-            System.out.println("Actual recipient: " + storedMessages.get(i).recipientNumber + "Vs Searched " + recipient);
-            System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
+            
+            //System.out.println("Actual recipient: " + storedMessages.get(i).recipientNumber + "Vs Searched " + recipient);
+            //System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
+            
             if (storedMessages.get(i).recipientNumber.equals(recipient)) {
                 messagesForParticularRecipient.add(storedMessages.get(i).message);
+                
                 //System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
             }
         }
