@@ -4,6 +4,9 @@
  */
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+
 import static org.junit.jupiter.api.Assertions.*;
 import com.mycompany.quickchat.Message;
 import com.mycompany.quickchat.Message;
@@ -15,7 +18,7 @@ import org.junit.jupiter.api.BeforeAll;
  */
 
 // !!!! DELETE storedMessageTestJSON.json before this JUNIT Test is RUN !!!!!!
-
+@TestInstance(Lifecycle.PER_CLASS)
 public class storedMessagesTest {
     
     Message message = new Message("storedMessageTestJSON.json");
@@ -39,6 +42,7 @@ public class storedMessagesTest {
         message.discardMessage(message3);
         message.sendMessage(message4);
         message.storeMessage(message5);
+        System.out.println(message.getSentMessages().length);
     }
     
     @Test

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="messageTests" time="0.083" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="storedMessagesTest" time="0.115" tests="5" errors="0" skipped="0" failures="4">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,8 +15,9 @@
     <property name="user.country" value="ZW"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Apache NetBeans\jdk\bin"/>
-    <property name="sun.java.command" value="C:\Users\User\AppData\Local\Temp\surefire1623801297916744658\surefirebooter-20260610154928422_3.jar C:\Users\User\AppData\Local\Temp\surefire1623801297916744658 2026-06-10T15-49-28_268-jvmRun1 surefire-20260610154928422_1tmp surefire_0-20260610154928422_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\User\AppData\Local\Temp\surefire2784276660167763646\surefirebooter-20260610155323031_3.jar C:\Users\User\AppData\Local\Temp\surefire2784276660167763646 2026-06-10T15-53-22_892-jvmRun1 surefire-20260610155323031_1tmp surefire_0-20260610155323031_2tmp"/>
     <property name="jdk.debug" value="release"/>
+    <property name="test" value="storedMessagesTest"/>
     <property name="surefire.test.class.path" value="C:\Users\User\Documents\GitHub\QuickChat\target\test-classes;C:\Users\User\Documents\GitHub\QuickChat\target\classes;C:\Users\User\.m2\repository\com\google\code\gson\gson\2.14.0\gson-2.14.0.jar;C:\Users\User\.m2\repository\com\google\errorprone\error_prone_annotations\2.48.0\error_prone_annotations-2.48.0.jar;C:\Users\User\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\User\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\User\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\User\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\User\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\User\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\User\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\User"/>
@@ -30,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\User\AppData\Local\Temp\surefire1623801297916744658\surefirebooter-20260610154928422_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\User\AppData\Local\Temp\surefire2784276660167763646\surefirebooter-20260610155323031_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS"/>
@@ -61,13 +62,72 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="messageIDTest" classname="messageTests" time="0.068"/>
-  <testcase name="sentMessageTest" classname="messageTests" time="0.002"/>
-  <testcase name="recipientNumberIncorrectlyFormatted" classname="messageTests" time="0.001"/>
-  <testcase name="recipientNumberCorrectlyFormatted" classname="messageTests" time="0.001"/>
-  <testcase name="messageLengthFail" classname="messageTests" time="0.001"/>
-  <testcase name="messageLengthPass" classname="messageTests" time="0.002">
-    <system-out><![CDATA[Message is ready to send.
+  <testcase name="checkDisplayLongestString" classname="storedMessagesTest" time="0.018">
+    <failure message="expected: &lt;Where are you? You are late! I have asked you to be on time.&gt; but was: &lt;Lets play warzone today, im so f**king tired of fortnite lol &gt;:(&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <Where are you? You are late! I have asked you to be on time.> but was: <Lets play warzone today, im so f**king tired of fortnite lol >:(>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at storedMessagesTest.checkDisplayLongestString(storedMessagesTest.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+    <system-out><![CDATA[JSON successfully saved to storedMessageTestJSON.json
+JSON successfully saved to storedMessageTestJSON.json
+2
+Lets play warzone today, im so f**king tired of fortnite lol >:(
+]]></system-out>
+  </testcase>
+  <testcase name="checkSentMessagesCorrectlyPopulated" classname="storedMessagesTest" time="0.002">
+    <failure message="expected: [Ljava.lang.String;@7530ad9c&lt;[Did you get the cake?, it is dinner time !]&gt; but was: [Ljava.lang.String;@58a9760d&lt;[Did you get the cake?, it is dinner time !]&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: [Ljava.lang.String;@7530ad9c<[Did you get the cake?, it is dinner time !]> but was: [Ljava.lang.String;@58a9760d<[Did you get the cake?, it is dinner time !]>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at storedMessagesTest.checkSentMessagesCorrectlyPopulated(storedMessagesTest.java:52)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+  </testcase>
+  <testcase name="searchMessagesStoredForRecipient" classname="storedMessagesTest" time="0.002">
+    <failure message="expected: &lt;[Where are you? You are late! I have asked you to be on time., Ok I am leaving without you.]&gt; but was: &lt;[]&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <[Where are you? You are late! I have asked you to be on time., Ok I am leaving without you.]> but was: <[]>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at storedMessagesTest.searchMessagesStoredForRecipient(storedMessagesTest.java:75)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+  </testcase>
+  <testcase name="deleteMessageViaHash" classname="storedMessagesTest" time="0.003">
+    <system-out><![CDATA[Message Deleted
+JSON successfully saved to storedMessageTestJSON.json
+]]></system-out>
+  </testcase>
+  <testcase name="checkSearchMessageID" classname="storedMessagesTest" time="0.003">
+    <failure message="expected: &lt;it is dinner time !&gt; but was: &lt;&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <it is dinner time !> but was: <>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at storedMessagesTest.checkSearchMessageID(storedMessagesTest.java:67)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+    <system-out><![CDATA[Message not found
 ]]></system-out>
   </testcase>
 </testsuite>
