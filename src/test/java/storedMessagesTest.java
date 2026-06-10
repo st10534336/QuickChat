@@ -5,20 +5,22 @@
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import static org.junit.jupiter.api.Assertions.*;
 import com.mycompany.quickchat.Message;
 import com.mycompany.quickchat.Message;
 import com.mycompany.quickchat.messageData;
-import org.junit.jupiter.api.BeforeAll;
+
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 /**
  *
  * @author User
  */
 
 // !!!! DELETE storedMessageTestJSON.json before this JUNIT Test is RUN !!!!!!
-@TestInstance(Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class storedMessagesTest {
     
     Message message = new Message("storedMessageTestJSON.json");
@@ -35,7 +37,8 @@ public class storedMessagesTest {
     messageData message5 = message.generateMessageData(messages[4], sender, recipients[4]);
  
     
-    @BeforeAll
+    @Test
+    @Order(1)
     public void populateArrays() {
         message.sendMessage(message1);
         message.storeMessage(message2);
@@ -45,14 +48,20 @@ public class storedMessagesTest {
         System.out.println(message.getSentMessages().length);
     }
     
+    
     @Test
+    @Order(2)
     public void checkSentMessagesCorrectlyPopulated() {
         String[] expected = {message1.message, message4.message};
         String[] actual = message.getSentMessages();
+        for (int i=0; i<2; i++) {
+            System.out.println(message.messagesSent.get(i).message);
+        }
         assertEquals(expected, actual);
     }
     
     @Test
+    @Order(3)
     public void checkDisplayLongestString() {
         String expected = messages[1];
         String actual = message.showLongestStoredMessage();
@@ -60,6 +69,7 @@ public class storedMessagesTest {
     }
     
     @Test
+    @Order(4)
     public void checkSearchMessageID() {
         String testData = message4.messageID;
         String expected = message4.message;
@@ -68,6 +78,7 @@ public class storedMessagesTest {
     }
     
     @Test
+    @Order(5)
     public void searchMessagesStoredForRecipient() {
         String testData = "+27838884567";
         String[] expected = {messages[1], messages[4]};
@@ -76,6 +87,7 @@ public class storedMessagesTest {
     }
     
     @Test
+    @Order(6)
     public void deleteMessageViaHash() {
         String testData = message2.messageHash;
         String expected = message2.message;

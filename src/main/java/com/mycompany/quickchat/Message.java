@@ -47,7 +47,7 @@ public class Message {
     public static final int MAX_MESSAGE_STORAGE_CAPACITY = 250;
     
     
-    ArrayList<messageData> messagesSent = new ArrayList<>();
+    public ArrayList<messageData> messagesSent = new ArrayList<>();
     ArrayList<messageData> discardedMessages = new ArrayList<>();   
     ArrayList<messageData> storedMessages = new ArrayList<>();
     ArrayList<String> messageHashes = new ArrayList<>();

@@ -1,29 +1,41 @@
 -------------------------------------------------------------------------------
 Test set: storedMessagesTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.115 s <<< FAILURE! -- in storedMessagesTest
-storedMessagesTest.checkDisplayLongestString -- Time elapsed: 0.018 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <Where are you? You are late! I have asked you to be on time.> but was: <Lets play warzone today, im so f**king tired of fortnite lol >:(>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
-	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at storedMessagesTest.checkDisplayLongestString(storedMessagesTest.java:59)
+Tests run: 6, Failures: 3, Errors: 2, Skipped: 0, Time elapsed: 0.143 s <<< FAILURE! -- in storedMessagesTest
+storedMessagesTest.checkSentMessagesCorrectlyPopulated -- Time elapsed: 0.008 s <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at storedMessagesTest.checkSentMessagesCorrectlyPopulated(storedMessagesTest.java:58)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 
-storedMessagesTest.checkSentMessagesCorrectlyPopulated -- Time elapsed: 0.002 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: [Ljava.lang.String;@7530ad9c<[Did you get the cake?, it is dinner time !]> but was: [Ljava.lang.String;@58a9760d<[Did you get the cake?, it is dinner time !]>
+storedMessagesTest.checkDisplayLongestString -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at com.mycompany.quickchat.Message.showLongestStoredMessage(Message.java:193)
+	at storedMessagesTest.checkDisplayLongestString(storedMessagesTest.java:67)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+storedMessagesTest.checkSearchMessageID -- Time elapsed: 0.008 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <it is dinner time !> but was: <>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at storedMessagesTest.checkSentMessagesCorrectlyPopulated(storedMessagesTest.java:52)
+	at storedMessagesTest.checkSearchMessageID(storedMessagesTest.java:77)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
@@ -36,20 +48,20 @@ org.opentest4j.AssertionFailedError: expected: <[Where are you? You are late! I 
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at storedMessagesTest.searchMessagesStoredForRecipient(storedMessagesTest.java:75)
+	at storedMessagesTest.searchMessagesStoredForRecipient(storedMessagesTest.java:86)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 
-storedMessagesTest.checkSearchMessageID -- Time elapsed: 0.003 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <it is dinner time !> but was: <>
+storedMessagesTest.deleteMessageViaHash -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Where are you? You are late! I have asked you to be on time.> but was: <>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at storedMessagesTest.checkSearchMessageID(storedMessagesTest.java:67)
+	at storedMessagesTest.deleteMessageViaHash(storedMessagesTest.java:95)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
