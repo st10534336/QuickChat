@@ -128,7 +128,7 @@ public class QuickChat {
         
         Message message = new Message();
         
-        message.loadStoredMessagesStateFromJson();
+        
         
         int userInput = scanner.nextInt();
         
@@ -211,6 +211,7 @@ public class QuickChat {
             
             else if (userInput == 3) {
                 System.out.println("""
+                                   
                 enter the number for your preferred action
                 1.display sender and recipient of all stored messages
                 2.display longest stored message
@@ -218,17 +219,41 @@ public class QuickChat {
                 4.search for all messages of a recipient via number
                 5.delete message via hash
                 6.Display all stored messages (all information included)
+                                   
                                    """);
                 scanner.nextLine();
                 int userOption = Integer.parseInt(scanner.nextLine());
                 
                 if (userOption == 1) {
-                    System.out.println("");
+                    message.showSenderAndRecieverOfStoredMessages();
                 }
+                if (userOption == 2) {
+                    message.showLongestStoredMessage();
+                }
+                if (userOption == 3) {
+                    System.out.println("Enter message ID: ");
+                    String messageID = scanner.nextLine();
+                    message.showRecipientandMessageViaMessageID(messageID);
+                }
+                if (userOption == 4) {
+                    System.out.println("Enter recipient Number: ");
+                    String recipient = scanner.nextLine();
+                    message.showMessagesStoredForParticularRecipient(recipient);
+                }
+                if (userOption == 5) {
+                    System.out.println("Enter Message Hash: ");
+                    String messageHash = scanner.nextLine();
+                    message.deleteMessageWithHash(messageHash);
+                }
+                if (userOption == 6) {
+                    message.showAllStoredMessages();
+                }
+                
             }
             else {
                 System.out.println("Invalid Input");
             }
+           
             System.out.println(initialPrompt);
             userInput = scanner.nextInt();
         }

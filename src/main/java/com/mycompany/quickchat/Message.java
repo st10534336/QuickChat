@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 
 import java.nio.file.*;
+import java.sql.SQLOutput;
 
 /**
  *
@@ -57,7 +58,7 @@ public class Message {
     public static final String USER_SELECTED_DISREGARD_MESSAGE_TEXT = "Press 0 to delete message";
     public static final String USER_SELECTED_STORE_MESSAGE_TEXT = "Message Successfully Stored";
     
-    public static final String MESSAGE_STORAGE_FILE_NAME = "savedMessages.json";
+    public String MESSAGE_STORAGE_FILE_NAME = "savedMessages.json";
     
     public static final int MAX_MESSAGE_CHARACTERS_LENGTH = 250;
     public static final int MAX_MESSAGE_STORAGE_CAPACITY = 250;
@@ -73,6 +74,17 @@ public class Message {
     
     int numMessagesSent=0;
     final public int MESSAGE_ID_LENGTH = 10;
+    
+    
+    public  Message () {
+       loadStoredMessagesStateFromJson();
+    }
+    
+    
+    public Message (String MESSAGE_STORAGE_FILE_NAME) {
+        loadStoredMessagesStateFromJson();
+        this.MESSAGE_STORAGE_FILE_NAME = MESSAGE_STORAGE_FILE_NAME;
+    }
     
     
     public String generateMessageID() {
@@ -187,11 +199,11 @@ public class Message {
     }
     
     
-    public void showLongestStoredMessage() {
+    public String showLongestStoredMessage() {
         messageData largestMessage = storedMessages.get(0);
-        if (storedMessages.size() == 0) {
+        if (storedMessages.isEmpty()) {
             System.out.println("no stored messages");
-         return;
+         return "";
         }
         for (int i=1; i<storedMessages.size(); i++) {
             if (storedMessages.get(i).message.length() > largestMessage.message.length()) {
@@ -200,26 +212,43 @@ public class Message {
         }
         //System.out.println("Longest Stored Message: ");
         System.out.println(largestMessage.message);
+        return largestMessage.message;
     }
     
     
-    public void showRecipientandMessageViaMessageID() {
-        Scanner scanner = new Scanner(System.in);
+    public String showRecipientandMessageViaMessageID(String messageID) {
+        //Scanner scanner = new Scanner(System.in);
         
-        System.out.println("Enter Message ID: ");
-        String userInput = scanner.nextLine();
+        //System.out.println("Enter Message ID: ");
+        //String messageID = scanner.nextLine();
+        
         
         for (int i=0; i<storedMessages.size(); i++) {
-            if (storedMessages.get(i).messageID.equals(userInput)) {
+            if (storedMessages.get(i).messageID.equals(messageID)) {
                 //System.out.println("Message Found: ");
                 System.out.println("Recipient: " + storedMessages.get(i).recipientNumber);
                 System.out.println("Message: "+ storedMessages.get(i).message);
-                return;
+                return storedMessages.get(i).message;
             }
         }
         
         System.out.println("Message not found");
+        return "";
     }
+    
+    public String[] showMessagesStoredForParticularRecipient(String recipient) {
+        ArrayList<String> messagesForParticularRecipient = new ArrayList<>();
+        
+        for (int i=0; i<storedMessages.size(); i++) {
+            if (storedMessages.get(i).recipientNumber.equals(recipient)) {
+                messagesForParticularRecipient.add(storedMessages.get(i).message);
+            }
+        }
+        return messagesForParticularRecipient.toArray(new String[0]);
+    }
+    
+    
+    
     
     public void showAllStoredMessages() {
         for (int i=0; i<storedMessages.size();i++) {
@@ -274,18 +303,25 @@ public class Message {
     }
     
     
-    public void deleteMessageWithHash(String messageHash) {
+    public String deleteMessageWithHash(String messageHash) {
         ArrayList<messageData> tempArray = new ArrayList<>();
+        String deletedMessage = "";
         
         for (int i=0; i<storedMessages.size(); i++) {
             if (!storedMessages.get(i).messageHash.equals(messageHash)) {
                 tempArray.add(storedMessages.get(i));
-            } 
+            }
+            else {
+                deletedMessage = storedMessages.get(i).message;
+                if (!deletedMessage.isBlank()) {
+                    System.out.println("Message Deleted");
+                }
+            }
         }
         
         storedMessages = tempArray;
-        
         saveStoredMessagesStateToJson();
+        return deletedMessage;
     }
     
     
@@ -294,6 +330,12 @@ public class Message {
     }
     
     
+    public void sendMessage(messageData mData) {
+        //populate these arrays ONLY when a message is sent
+        messagesSent.add(mData);
+        messageHashes.add(mData.messageHash);
+        messageIDs.add(mData.messageID);
+    }
     
     //The POE said this function should use JSONs to store messages
     public void storeMessage(messageData mData) {
