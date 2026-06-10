@@ -126,7 +126,7 @@ public class QuickChat {
         
         System.out.println(initialPrompt);
         
-        Message message = new Message();
+        Message message = new Message("quickChatMessageStorage.json");
         
         
         

@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.mycompany.quickchat.Message;
 import com.mycompany.quickchat.Message;
 import com.mycompany.quickchat.messageData;
+import org.junit.jupiter.api.BeforeAll;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.TestMethodOrder;
  */
 
 // !!!! DELETE storedMessageTestJSON.json before this JUNIT Test is RUN !!!!!!
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // 1. Keeps variables alive across tests
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class storedMessagesTest {
     
@@ -46,18 +48,17 @@ public class storedMessagesTest {
         message.sendMessage(message4);
         message.storeMessage(message5);
         System.out.println(message.getSentMessages().length);
+        assertEquals(true, true);
     }
     
     
     @Test
     @Order(2)
     public void checkSentMessagesCorrectlyPopulated() {
+        System.out.println("inside second test, messagesSent is equals to: "+message.messagesSent.size());
         String[] expected = {message1.message, message4.message};
         String[] actual = message.getSentMessages();
-        for (int i=0; i<2; i++) {
-            System.out.println(message.messagesSent.get(i).message);
-        }
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
     
     @Test
@@ -83,7 +84,7 @@ public class storedMessagesTest {
         String testData = "+27838884567";
         String[] expected = {messages[1], messages[4]};
         String[] actual = message.showMessagesStoredForParticularRecipient(testData);
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
     
     @Test

@@ -16,7 +16,7 @@ public class messageData {
     public String recipientNumber;
     public String message;
     
-    public messageData (String rawMessageString, String recipientNumber, String senderNumber, String messageID, String messageHash) {
+    public messageData (String rawMessageString, String senderNumber, String recipientNumber, String messageID, String messageHash) {
         this.message = rawMessageString;
         this.senderNumber = senderNumber;
         this.recipientNumber = recipientNumber;

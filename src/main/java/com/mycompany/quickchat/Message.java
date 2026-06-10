@@ -64,9 +64,9 @@ public class Message {
     }
     
     
-    public Message (String MESSAGE_STORAGE_FILE_NAME) {
+    public Message (String NEW_MESSAGE_STORAGE_FILE_NAME) {
+        this.MESSAGE_STORAGE_FILE_NAME = NEW_MESSAGE_STORAGE_FILE_NAME;
         loadStoredMessagesStateFromJson();
-        this.MESSAGE_STORAGE_FILE_NAME = MESSAGE_STORAGE_FILE_NAME;
     }
     
     
@@ -212,16 +212,24 @@ public class Message {
         //System.out.println("Enter Message ID: ");
         //String messageID = scanner.nextLine();
         
-        
+        //check if the message was in the stored messages
         for (int i=0; i<storedMessages.size(); i++) {
             if (storedMessages.get(i).messageID.equals(messageID)) {
                 //System.out.println("Message Found: ");
-                System.out.println("Recipient: " + storedMessages.get(i).recipientNumber);
-                System.out.println("Message: "+ storedMessages.get(i).message);
                 return storedMessages.get(i).message;
+            }
+            else {
             }
         }
         
+        //if not in stored messages we will check the messages sent
+        for (int i=0; i<messagesSent.size(); i++) {
+            if (messagesSent.get(i).messageID.equals(messageID)) {
+                return messagesSent.get(i).message;
+            }
+        }
+        
+        //if not found in any of those arrays the message is not found
         System.out.println("Message not found");
         return "";
     }
@@ -230,8 +238,11 @@ public class Message {
         ArrayList<String> messagesForParticularRecipient = new ArrayList<>();
         
         for (int i=0; i<storedMessages.size(); i++) {
+            System.out.println("Actual recipient: " + storedMessages.get(i).recipientNumber + "Vs Searched " + recipient);
+            System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
             if (storedMessages.get(i).recipientNumber.equals(recipient)) {
                 messagesForParticularRecipient.add(storedMessages.get(i).message);
+                //System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
             }
         }
         return messagesForParticularRecipient.toArray(new String[0]);
