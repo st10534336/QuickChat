@@ -13,19 +13,25 @@ import com.mycompany.quickchat.messageData;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author User
  */
 
-// !!!! DELETE storedMessageTestJSON.json before this JUNIT Test is RUN !!!!!!
-//So after Running this the first time, delete the storedMessageTestJSON.json file and rerun it again
-//if not the test will fail due to the searchMessagesStoredForRecipient() test
+
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 1. Keeps variables alive across tests
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class storedMessagesTest {
-    final String jsonTestFileName = "storedMessageTestJSON.json";
+    
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss");
+        
+    String safeTimestamp = LocalDateTime.now().format(formatter); //creating a unique timestamp 
+    final String jsonTestFileName = "storedMessageTestJSON-"+ safeTimestamp +".json"; //create a unique json file for every test like a log file
     
     Message message = new Message(jsonTestFileName);
     
@@ -43,15 +49,21 @@ public class storedMessagesTest {
     
     @Test
     @Order(1)
-    public void populateArrays() {
+    public void checkArraysCorrectlyPopulated() {
+        System.out.println(jsonTestFileName);
         
         message.sendMessage(message1);
         message.storeMessage(message2);
         message.discardMessage(message3);
         message.sendMessage(message4);
         message.storeMessage(message5);
-        System.out.println(message.getSentMessages().length);
-        assertEquals(true, true);
+        
+        String[] expected = {message1.message, message4.message};
+        String[] actual = message.getSentMessages();
+        
+        for (int i=0; i<expected.length;i++){
+            assertEquals(expected[i], actual[i]);
+        }
     }
     
     
@@ -60,7 +72,10 @@ public class storedMessagesTest {
     public void checkSentMessagesCorrectlyPopulated() {
         String[] expected = {message1.message, message4.message};
         String[] actual = message.getSentMessages();
-        assertArrayEquals(expected, actual);
+        for (int i = 0; i<expected.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+        
     }
     
     @Test
@@ -86,7 +101,9 @@ public class storedMessagesTest {
         String testData = "+27838884567";
         String[] expected = {messages[1], messages[4]};
         String[] actual = message.showMessagesStoredForParticularRecipient(testData);
-        assertArrayEquals(expected, actual);
+        for (int i = 0; i<expected.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
     }
     
     @Test
