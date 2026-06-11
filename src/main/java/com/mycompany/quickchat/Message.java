@@ -4,7 +4,6 @@
  */
 package com.mycompany.quickchat;
 import java.util.Random;
-import java.util.Scanner;
 import com.mycompany.quickchat.Login;
 import com.mycompany.quickchat.messageData;
 import java.util.ArrayList;
@@ -14,20 +13,18 @@ import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.*;
 
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 
 import java.nio.file.*;
-import java.sql.SQLOutput;
 
 /**
  *
  * @author Student
  */
 
-public class Message {
+public final class Message {
     
     public static final String MESSAGE_LENGTH_STATUS_PASS_TEXT = """
                    Message is ready to send.""";
@@ -248,7 +245,7 @@ public class Message {
                 //System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
             }
         }
-        return messagesForParticularRecipient.toArray(new String[0]);
+        return messagesForParticularRecipient.toArray(String[]::new);
     }
     
     

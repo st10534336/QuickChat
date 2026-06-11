@@ -52,6 +52,7 @@ public class storedMessagesTest {
     public void checkArraysCorrectlyPopulated() {
         System.out.println(jsonTestFileName);
         
+        //This is where we populate the arrays
         message.sendMessage(message1);
         message.storeMessage(message2);
         message.discardMessage(message3);
