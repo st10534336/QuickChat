@@ -24,8 +24,8 @@ import java.time.format.DateTimeFormatter;
 
 
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS) // 1. Keeps variables alive across tests
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // keeps variables alive across tests
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)// runs the functions in the correct order
 public class storedMessagesTest {
     
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss");
