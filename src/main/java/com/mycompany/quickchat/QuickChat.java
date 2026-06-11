@@ -112,7 +112,8 @@ public class QuickChat {
         System.out.println(loginStatus);
         System.out.println("Welcome to QuickChat " + firstName + " " + lastName + "!, it's great to see you again!");
         
-       
+        Message message = new Message("quickChatMessageStorage.json");
+        
         String initialPrompt = """
                            
                            
@@ -126,7 +127,6 @@ public class QuickChat {
         
         System.out.println(initialPrompt);
         
-        Message message = new Message("quickChatMessageStorage.json");
         
         
         
