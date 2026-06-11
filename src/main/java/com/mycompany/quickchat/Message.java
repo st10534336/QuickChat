@@ -242,7 +242,7 @@ public final class Message {
             if (storedMessages.get(i).recipientNumber.equals(recipient)) {
                 messagesForParticularRecipient.add(storedMessages.get(i).message);
                 
-                //System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
+                System.out.println("Messages of recipeint: " + storedMessages.get(i).message);
             }
         }
         return messagesForParticularRecipient.toArray(String[]::new);
@@ -315,7 +315,7 @@ public final class Message {
             else {
                 deletedMessage = storedMessages.get(i).message;
                 if (!deletedMessage.isBlank()) {
-                    System.out.println("Message Deleted");
+                    System.out.println("Message Deleted: " + deletedMessage);
                 }
             }
         }

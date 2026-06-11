@@ -233,7 +233,8 @@ public class QuickChat {
                 if (userOption == 3) {
                     System.out.println("Enter message ID: ");
                     String messageID = scanner.nextLine();
-                    message.showRecipientandMessageViaMessageID(messageID);
+                    String m = message.showRecipientandMessageViaMessageID(messageID);
+                    System.out.println(m);
                 }
                 if (userOption == 4) {
                     System.out.println("Enter recipient Number: ");
